@@ -8,5 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Assets/97_Scenes/MVPScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: d3d7bcdee24043942ad1d202e2ab89ba,
+      type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
+      guid: 73ca7f0deaa6da148989d618c126538a, type: 2}
   m_UseUCBPForAssetBundles: 0
