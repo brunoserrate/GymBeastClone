@@ -7,22 +7,19 @@ namespace SerrateDevs {
     public class PlayerInputHandler : MonoBehaviour {
 
         [Header("Components")]
-        [SerializeField] private Rigidbody rb;
-
-        [Header("Movement")]
-        [SerializeField] private float speed = 2f;
+        [SerializeField] private PlayerMovement playerMovement;
 
         // Internals
         private Vector3 clickedPosition;
 
         private void OnEnable() {
             InputReader.OnClick += SetClickedPosition;
-            InputReader.OnDrag += Move;
+            InputReader.OnDrag += MoveRotate;
             InputReader.OnRelease += Stop;
         }
 
         private void OnDisable() {
-            InputReader.OnDrag -= Move;
+            InputReader.OnDrag -= MoveRotate;
             InputReader.OnRelease -= Stop;
         }
 
@@ -30,13 +27,14 @@ namespace SerrateDevs {
             clickedPosition = position;
         }
 
-        private void Move(Vector3 position) {
+        private void MoveRotate(Vector3 position) {
             Vector3 direction = (position - clickedPosition).normalized;
-            rb.velocity = new Vector3(direction.x * speed, 0, direction.y * speed);
+            playerMovement.Move(direction);
+            playerMovement.Rotate(direction);
         }
 
         private void Stop(Vector3 position) {
-            rb.velocity = Vector3.zero;
+            playerMovement.Stop();
         }
     }
 }
